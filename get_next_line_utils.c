@@ -6,16 +6,16 @@
 /*   By: onajem <onajem@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 17:22:00 by onajem            #+#    #+#             */
-/*   Updated: 2024/11/24 12:09:29 by onajem           ###   ########.fr       */
+/*   Updated: 2024/11/24 21:22:02 by onajem           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-
 size_t	ft_strlen(const char *s)
 {
 	size_t	i;
+
 	if (!s)
 		return (0);
 	i = 0;
@@ -24,8 +24,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-
-int ft_strchr(const char *s, int c)
+int	ft_strchr(const char *s, int c)
 {
 	int	i;	
 
@@ -78,7 +77,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	size_t	len_s1;
 	size_t	len_s2;
 	size_t	i;
-	char *tmp;
 
 	if (!s1 && !s2)
 		return (NULL);
@@ -90,7 +88,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	len_s2 = ft_strlen(s2);
 	dest = (char *)malloc(len_s1 + len_s2 + 1);
 	if (!dest)
-		return (NULL);
+		return (freee(&s1), NULL);
 	i = 0;
 	set_prefix(dest, s1, i, len_s1);
 	while (i < len_s2)
@@ -99,6 +97,5 @@ char	*ft_strjoin(char *s1, char *s2)
 		i++;
 	}
 	dest[len_s1 + len_s2] = '\0';
-	freee(s1);
-	return (dest);
+	return (freee(&s1), dest);
 }
