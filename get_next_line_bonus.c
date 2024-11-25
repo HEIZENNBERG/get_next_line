@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: onajem <onajem@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 17:18:10 by onajem            #+#    #+#             */
-/*   Updated: 2024/11/25 11:46:09 by onajem           ###   ########.fr       */
+/*   Created: 2024/11/25 11:59:00 by onajem            #+#    #+#             */
+/*   Updated: 2024/11/25 17:19:06 by onajem           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 void	freee(char **s)
 {
@@ -75,7 +75,7 @@ char	*allocate(size_t size)
 
 char	*get_next_line(int fd)
 {
-	static char	*left;
+	static char	*left[OPEN_MAX];
 	char		*buf;
 	char		*line;
 	int			len;
@@ -87,15 +87,15 @@ char	*get_next_line(int fd)
 	{
 		len = read(fd, buf, BUFFER_SIZE);
 		if (len < 0)
-			return (freee(&buf), freee(&left), NULL);
+			return (freee(&buf), freee(&left[fd]), NULL);
 		buf[len] = '\0';
-		left = ft_strjoin(left, buf);
-		if (ft_strchr(left, '\n') || len == 0)
+		left[fd] = ft_strjoin(left[fd], buf);
+		if (ft_strchr(left[fd], '\n') || len == 0)
 			break ;
 	}
-	if (!left)
+	if (!left[fd])
 		return (NULL);
-	line = get__line(left);
-	left = get_left(left);
+	line = get__line(left[fd]);
+	left[fd] = get_left(left[fd]);
 	return (freee(&buf), line);
 }
