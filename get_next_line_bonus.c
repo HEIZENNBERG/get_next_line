@@ -6,7 +6,7 @@
 /*   By: onajem <onajem@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:59:00 by onajem            #+#    #+#             */
-/*   Updated: 2024/11/25 17:19:06 by onajem           ###   ########.fr       */
+/*   Updated: 2024/11/26 16:46:09 by onajem           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ char	*get__line(char *buff)
 		dest[j] = buff[j];
 		j++;
 	}
-	dest[i - 1] = '\n';
 	dest[i] = '\0';
 	return (dest);
 }
@@ -80,7 +79,7 @@ char	*get_next_line(int fd)
 	char		*line;
 	int			len;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= INT_MAX)
+	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= INT_MAX || fd > OPEN_MAX)
 		return (NULL);
 	buf = allocate(BUFFER_SIZE);
 	while (1)
