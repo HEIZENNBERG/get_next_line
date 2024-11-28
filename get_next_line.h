@@ -6,7 +6,7 @@
 /*   By: onajem <onajem@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 16:03:45 by onajem            #+#    #+#             */
-/*   Updated: 2024/11/26 17:38:57 by onajem           ###   ########.fr       */
+/*   Updated: 2024/11/27 15:37:02 by onajem           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # endif  
 
 # include <unistd.h>
-# include <fcntl.h>
 # include <stdlib.h>
 # include <limits.h>
 
